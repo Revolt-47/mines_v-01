@@ -37,4 +37,21 @@ body{
   font-weight: 500;
 }
 
+.success{
+ 
+  font-size: smaller;
+  text-size-adjust: 2px;
+  text-align: center;
+  padding: 10 px;
+}
+
+.error{
+
+  font-size: smaller;
+  text-size-adjust: 2px;
+  text-align: justify;
+  padding: 10 px;
+
+}
+
  
