@@ -1,12 +1,11 @@
+
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
-export default function Form(){
+export default function Login(){
 
     const [name,setName] = useState('');
     const [password,setPassword] = useState('');
     const navigate = useNavigate();
-
     const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
  
@@ -29,9 +28,12 @@ export default function Form(){
     } else {
       setSubmitted(true);
       setError(false);
-      nav();
     }
   };
+
+  function nav(){
+    navigate("/")
+  }
 
 
   // Showing success message
@@ -57,26 +59,15 @@ export default function Form(){
         }}>
         <h1>Please enter all the fields</h1>
       </div>
-    );
-  };
+    )}
 
-  const nav = () => {
-    navigate("/login")
-  }
+    return(
 
-  return (
-    <div className="form">
-      <div>
-        <h1>User Registration</h1>
-      </div>
- 
-      {/* Calling to the methods */}
-      <div className="messages">
+        <div className="messages">
         {errorMessage()}
-        {successMessage()}
-      </div>
- 
-      <form>
+        {successMessage()}      
+            <h1>Enter your Credentials</h1>
+            <form>
         {/* Labels and inputs for form data */}
         <label className="label">Name</label>
         <input onChange={handleName} className="input"
@@ -90,11 +81,13 @@ export default function Form(){
           Submit
         </button>
 
-        <button onClick={nav} className="btn">
-          Go to login page
+        <button onClick={nav} className="btn" >
+          Create a new account
         </button>
-      </form>
-    </div>
-  );
-}
 
+        
+      </form>
+        </div>
+    )
+    
+}
