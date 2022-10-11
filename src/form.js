@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function Form(){
@@ -6,9 +6,15 @@ export default function Form(){
     const [name,setName] = useState('');
     const [password,setPassword] = useState('');
     const navigate = useNavigate();
+    
+    
 
     const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+
+ 
+ 
+  
  
   // Handling the name change
   const handleName = (e) => {
@@ -75,6 +81,7 @@ export default function Form(){
         {errorMessage()}
         {successMessage()}
       </div>
+    
  
       <form>
         {/* Labels and inputs for form data */}
