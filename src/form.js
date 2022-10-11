@@ -1,5 +1,5 @@
 import React, {  useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useFetcher, useNavigate } from 'react-router-dom';
 
 export default function Form(){
 
@@ -36,8 +36,28 @@ export default function Form(){
       setSubmitted(true);
       setError(false);
       nav();
+      postData({name:"Salman"}).then((data) => {
+        console.log(data);
+      });
     }
   };
+
+  async function postData(data={}){
+    console.log(data)
+    let body = JSON.stringify(data);
+    console.log(body)
+    let response = await fetch('http://localhost:5000/api' , {
+      method:"POST",
+      mode: 'no-cors',
+      Accept:"*/*",
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body:data
+      })
+    return response.json()
+  }
 
 
   // Showing success message
