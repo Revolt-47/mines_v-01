@@ -1,20 +1,14 @@
-import React, {  useState } from 'react'
-import { useFetcher, useNavigate } from 'react-router-dom';
-
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+const axios = require('axios').default;
 export default function Form(){
 
     const [name,setName] = useState('');
     const [password,setPassword] = useState('');
     const navigate = useNavigate();
-    
-    
 
     const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
-
- 
- 
-  
  
   // Handling the name change
   const handleName = (e) => {
@@ -36,28 +30,26 @@ export default function Form(){
       setSubmitted(true);
       setError(false);
       nav();
-      postData({name:"Salman"}).then((data) => {
-        console.log(data);
-      });
+      postData('http://localhost:5000/api' , "salman");
     }
   };
 
-  async function postData(data={}){
-    console.log(data)
-    let body = JSON.stringify(data);
-    console.log(body)
-    let response = await fetch('http://localhost:5000/api' , {
-      method:"POST",
-      mode: 'no-cors',
-      Accept:"*/*",
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body:data
-      })
-    return response.json()
-  }
+    async function postData(url = '', data) {
+
+      axios.get('http://localhost:5000/api').then((response) => {
+        console.log(response.data);
+      });
+  // Default options are marked with *
+  axios({
+    method: 'post',
+    
+    url: 'http://localhost:5000/api',
+    data: {
+      name: 'Fred',
+      lastName: 'Flintstone'
+    }
+  });
+}
 
 
   // Showing success message
@@ -101,7 +93,6 @@ export default function Form(){
         {errorMessage()}
         {successMessage()}
       </div>
-    
  
       <form>
         {/* Labels and inputs for form data */}
@@ -124,4 +115,3 @@ export default function Form(){
     </div>
   );
 }
-
